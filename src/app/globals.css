@@ -1,0 +1,405 @@
+@import "tailwindcss";
+
+/* ==================================================================
+   Matchamaticien — design tokens
+   Palette : indigo (profond, élégant) + accent coquelicot, inspirée
+   de l'esthétique des flash cards (grain, relief, boutons "3D").
+   Les variables --color-matcha-* portent la teinte de marque ; le nom
+   est conservé en interne pour ne pas toucher aux classes partout,
+   mais la couleur réelle est désormais l'indigo, plus le vert.
+   ================================================================== */
+:root {
+  color-scheme: light;
+
+  /* Neutrals — warm paper tones */
+  --color-paper: #fffdf8;
+  --color-cream: #faf5e9;
+  --color-cream-deep: #f3ecd9;
+  --color-beige: #e9dfc6;
+  --color-beige-deep: #ddcca0;
+
+  /* Indigo — couleur de marque (remplace l'ancien vert matcha) */
+  --color-matcha-50: #f1eefb;
+  --color-matcha-100: #e1dbf6;
+  --color-matcha-200: #c3b9ed;
+  --color-matcha-300: #9f90e0;
+  --color-matcha-400: #7c69d2;
+  --color-matcha-500: #5d47bf;
+  --color-matcha-600: #4a37a8;
+  --color-matcha-700: #3a2b87;
+  --color-matcha-800: #2b2066;
+  --color-matcha-900: #1d1646;
+  --color-matcha-950: #120d2e;
+
+  /* Espresso / coffee browns */
+  --color-espresso-100: #ede1d3;
+  --color-espresso-200: #dcc7ab;
+  --color-espresso-300: #c3a582;
+  --color-espresso-400: #a9835f;
+  --color-espresso-500: #8a6444;
+  --color-espresso-600: #6d4c34;
+  --color-espresso-700: #543a28;
+  --color-espresso-800: #3d2a1d;
+  --color-espresso-900: #2a1c13;
+
+  /* Accent — safran (doré), utilisé pour la famille "théorème" de la carte */
+  --color-gold-400: #f6b934;
+  --color-gold-500: #f2ab24;
+  --color-gold-600: #e8981a;
+
+  /* Accent "coquelicot" — le pop rouge sur fond vert, repris des flash
+     cards : boutons principaux, appels à l'action. */
+  --color-accent: #d42a1c;
+  --color-accent-top: #ef4434;
+  --color-accent-edge: #8a120a;
+
+  /* Texte clair fixe : toujours crème, quel que soit le thème.
+     À utiliser (au lieu de --color-cream) pour du texte posé sur un
+     fond saturé (badges, boutons pleins, sections foncées) qui doit
+     rester lisible aussi bien en thème clair qu'en thème sombre. */
+  --color-on-brand: #faf5e9;
+
+  /* Semantic tokens (light mode) */
+  --color-bg: var(--color-cream);
+  --color-bg-elevated: var(--color-paper);
+  --color-bg-card: #fffefb;
+  --color-border: var(--color-beige-deep);
+  --color-ink: var(--color-matcha-950);
+  --color-ink-soft: var(--color-espresso-700);
+  --color-muted: #6b6151;
+  --color-brand: var(--color-matcha-600);
+  --color-brand-strong: var(--color-matcha-700);
+  --color-brand-soft: var(--color-matcha-100);
+
+  --shadow-color: 255 40% 10%;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --color-bg: #120d2e;
+  --color-bg-elevated: #1d1646;
+  --color-bg-card: #231c52;
+  --color-border: #352a6e;
+  --color-ink: #f3ecd9;
+  --color-ink-soft: #d9cfb4;
+  --color-muted: #aea3d6;
+  --color-brand: var(--color-matcha-300);
+  --color-brand-strong: var(--color-matcha-200);
+  --color-brand-soft: #271f5c;
+
+  --color-cream: #1a1444;
+  --color-cream-deep: #201a52;
+  --color-beige: #241d5c;
+  --color-beige-deep: #2d2470;
+  --color-paper: #15103a;
+}
+
+@theme inline {
+  --font-serif: "Nunito", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Nunito", ui-sans-serif, system-ui, sans-serif;
+
+  --color-paper: var(--color-paper);
+  --color-cream: var(--color-cream);
+  --color-cream-deep: var(--color-cream-deep);
+  --color-beige: var(--color-beige);
+  --color-beige-deep: var(--color-beige-deep);
+
+  --color-matcha-50: var(--color-matcha-50);
+  --color-matcha-100: var(--color-matcha-100);
+  --color-matcha-200: var(--color-matcha-200);
+  --color-matcha-300: var(--color-matcha-300);
+  --color-matcha-400: var(--color-matcha-400);
+  --color-matcha-500: var(--color-matcha-500);
+  --color-matcha-600: var(--color-matcha-600);
+  --color-matcha-700: var(--color-matcha-700);
+  --color-matcha-800: var(--color-matcha-800);
+  --color-matcha-900: var(--color-matcha-900);
+  --color-matcha-950: var(--color-matcha-950);
+
+  --color-espresso-100: var(--color-espresso-100);
+  --color-espresso-200: var(--color-espresso-200);
+  --color-espresso-300: var(--color-espresso-300);
+  --color-espresso-400: var(--color-espresso-400);
+  --color-espresso-500: var(--color-espresso-500);
+  --color-espresso-600: var(--color-espresso-600);
+  --color-espresso-700: var(--color-espresso-700);
+  --color-espresso-800: var(--color-espresso-800);
+  --color-espresso-900: var(--color-espresso-900);
+
+  --color-gold-400: var(--color-gold-400);
+  --color-gold-500: var(--color-gold-500);
+  --color-gold-600: var(--color-gold-600);
+  --color-accent: var(--color-accent);
+  --color-accent-top: var(--color-accent-top);
+  --color-accent-edge: var(--color-accent-edge);
+  --color-on-brand: var(--color-on-brand);
+
+  --color-bg: var(--color-bg);
+  --color-bg-elevated: var(--color-bg-elevated);
+  --color-bg-card: var(--color-bg-card);
+  --color-border: var(--color-border);
+  --color-ink: var(--color-ink);
+  --color-ink-soft: var(--color-ink-soft);
+  --color-muted: var(--color-muted);
+  --color-brand: var(--color-brand);
+  --color-brand-strong: var(--color-brand-strong);
+  --color-brand-soft: var(--color-brand-soft);
+
+  --animate-fade-up: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-fade-in: fade-in 0.6s ease both;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-rise: rise-fade 3.4s ease-in infinite;
+  --animate-sway: sway 5s ease-in-out infinite;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes rise-fade {
+  0% {
+    transform: translateY(0) scale(0.7);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translateY(-64px) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes sway {
+  0%,
+  100% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+}
+
+@keyframes coin-spin {
+  0% {
+    transform: rotateY(0deg) scale(1);
+    animation-timing-function: cubic-bezier(0.4, 0, 0.8, 0.7);
+  }
+  50% {
+    transform: rotateY(90deg) scale(0.92);
+    animation-timing-function: cubic-bezier(0.2, 0.7, 0.35, 1);
+  }
+  100% {
+    transform: rotateY(180deg) scale(1);
+  }
+}
+
+* {
+  border-color: var(--color-border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background-color: var(--color-matcha-300);
+  color: var(--color-matcha-950);
+}
+
+/* subtle grain / paper texture overlay (fond clair, blend multiply) */
+.texture-paper {
+  position: relative;
+}
+.texture-paper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+/* grain plus marqué, pour les surfaces saturées (héros, flash cards) —
+   repris de l'esthétique des flash cards : blend "overlay", plus visible. */
+.texture-grain {
+  position: relative;
+}
+.texture-grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.28;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+
+/* relief "carte à jouer" pour les surfaces cliquables de la Carte des
+   maths (sous-thèmes, résultats, relations) — un filet de lumière en
+   haut de carte, dans le même esprit que le relief des flash cards,
+   mais discret : la version saturée (grain, "jeton" qui s'enfonce)
+   reste propre à l'espace Flash cards. */
+.card-relief {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 -1px 0 rgba(18, 13, 46, 0.05),
+    0 1px 2px rgba(18, 13, 46, 0.05);
+}
+
+/* bouton "3D" façon jeton : relief au repos, s'enfonce au clic —
+   repris tel quel de l'esthétique des flash cards. */
+.btn-3d {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.btn-3d:hover {
+  transform: translateY(-2px);
+}
+.btn-3d:active {
+  transform: translateY(4px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 1px 0 rgba(0, 0, 0, 0.2) !important;
+}
+
+/* ------------------------------------------------------------------
+   Article typography — "reading" prose
+   ------------------------------------------------------------------ */
+.article-prose {
+  color: var(--color-ink);
+  font-size: 1.125rem;
+  line-height: 1.85;
+}
+
+.article-prose > * + * {
+  margin-top: 1.5em;
+}
+
+.article-prose h2 {
+  font-family: var(--font-serif);
+  font-weight: 800;
+  font-size: 1.75rem;
+  line-height: 1.3;
+  color: var(--color-ink);
+  margin-top: 2.6em;
+  scroll-margin-top: 6rem;
+}
+
+.article-prose h3 {
+  font-family: var(--font-serif);
+  font-weight: 800;
+  font-size: 1.35rem;
+  line-height: 1.4;
+  color: var(--color-ink);
+  margin-top: 2em;
+  scroll-margin-top: 6rem;
+}
+
+.article-prose p {
+  color: var(--color-ink-soft);
+}
+
+.article-prose strong {
+  color: var(--color-ink);
+  font-weight: 800;
+}
+
+.article-prose a {
+  color: var(--color-brand-strong);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
+}
+
+.article-prose ul,
+.article-prose ol {
+  color: var(--color-ink-soft);
+  padding-left: 1.4em;
+}
+
+.article-prose ul {
+  list-style: disc;
+}
+
+.article-prose ol {
+  list-style: decimal;
+}
+
+.article-prose li + li {
+  margin-top: 0.5em;
+}
+
+.article-prose li::marker {
+  color: var(--color-brand);
+}
+
+.article-prose blockquote {
+  border-left: 3px solid var(--color-brand);
+  padding-left: 1.25em;
+  font-style: italic;
+  color: var(--color-ink-soft);
+}
+
+.article-prose code {
+  background: var(--color-cream-deep);
+  border: 1px solid var(--color-border);
+  border-radius: 0.35em;
+  padding: 0.1em 0.4em;
+  font-size: 0.88em;
+}
+
+.article-prose img {
+  border-radius: 1rem;
+}
+
+.article-prose hr {
+  border-color: var(--color-border);
+}
+
+/* KaTeX tuning */
+.katex {
+  font-size: 1.08em;
+}
+
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 1.5rem 0.25rem;
+}
+
+.article-prose .katex-display > .katex {
+  text-align: center;
+}
