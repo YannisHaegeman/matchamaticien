@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { Lightbulb, Pencil, RotateCcw } from "lucide-react";
+import { GraduationCap, Lightbulb, Pencil, RotateCcw } from "lucide-react";
 import type { RenderedFlashcard, FlashcardAmbiance } from "@/types/flashcards";
 import { FLASHCARD_AMBIANCES } from "@/lib/flashcards/ambiances";
-import { InlineMath } from "@/components/mathmap/InlineMath";
+import { MathAnswer } from "@/components/mathmap/MathAnswer";
+import { ExamPaperOverlay } from "@/components/flashcards/ExamPaperOverlay";
 
 type AiState = "idle" | "loading" | "done" | "error";
 type Verdict = "correct" | "partiel" | "incorrect";
@@ -72,6 +73,7 @@ export function FlashCard({
   const [aiState, setAiState] = useState<AiState>("idle");
   const [aiResult, setAiResult] = useState<{ verdict: Verdict; feedback: string } | null>(null);
   const [aiError, setAiError] = useState<string | null>(null);
+  const [showExamPaper, setShowExamPaper] = useState(false);
   const p = FLASHCARD_AMBIANCES[ambiance];
 
   const panelStyle = {
@@ -184,11 +186,11 @@ export function FlashCard({
                       Aperçu
                     </span>
                     <div
-                      className="min-h-[2.5rem] whitespace-pre-wrap rounded-xl bg-white/60 px-3 py-2 text-[15px] leading-relaxed text-[#1b1612]"
+                      className="min-h-[2.5rem] rounded-xl bg-white/60 px-3 py-2 text-[15px] leading-relaxed text-[#1b1612]"
                       style={{ boxShadow: `inset 0 0 0 1px ${p.line}` }}
                     >
                       {userAnswer.trim() ? (
-                        <InlineMath text={userAnswer} />
+                        <MathAnswer text={userAnswer} />
                       ) : (
                         <span className="italic opacity-50">Ta réponse s&rsquo;affichera ici au fur et à mesure…</span>
                       )}
@@ -268,6 +270,22 @@ export function FlashCard({
                 <Pencil className="h-4 w-4" strokeWidth={2.2} />
                 {showAnswerInput ? "Masquer ma réponse" : "Taper ma réponse"}
               </button>
+              {showAnswerInput ? (
+                <button
+                  type="button"
+                  onClick={() => setShowExamPaper(true)}
+                  className="inline-flex min-h-11 items-center gap-1.5 rounded-full px-5 py-3 text-[15px] font-bold"
+                  style={{
+                    border: `1px solid ${p.line}`,
+                    background: p.panel,
+                    color: p.ink,
+                    boxShadow: "0 8px 16px -10px rgba(0,0,0,0.4)",
+                  }}
+                >
+                  <GraduationCap className="h-4 w-4" strokeWidth={2.2} />
+                  Mode copie d&rsquo;examen
+                </button>
+              ) : null}
               <button
                 type="button"
                 onClick={() => setFlipped(true)}
@@ -350,6 +368,20 @@ export function FlashCard({
           </div>
         )}
       </div>
+      <ExamPaperOverlay
+        open={showExamPaper}
+        onClose={() => setShowExamPaper(false)}
+        card={card}
+        deckTitle={deckTitle}
+        index={index}
+        total={total}
+        userAnswer={userAnswer}
+        onChangeAnswer={setUserAnswer}
+        aiState={aiState}
+        aiError={aiError}
+        aiResult={aiResult}
+        onSubmit={handleCheckAnswer}
+      />
     </div>
   );
 }

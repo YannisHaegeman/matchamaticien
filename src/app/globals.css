@@ -98,6 +98,7 @@
 @theme inline {
   --font-serif: "Nunito", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Nunito", ui-sans-serif, system-ui, sans-serif;
+  --font-exam: "Patrick Hand", "Nunito", cursive;
 
   --color-paper: var(--color-paper);
   --color-cream: var(--color-cream);

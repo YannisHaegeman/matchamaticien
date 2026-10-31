@@ -6,6 +6,7 @@ import "@fontsource/nunito/700.css";
 import "@fontsource/nunito/800.css";
 import "@fontsource/nunito/900.css";
 import "@fontsource/nunito/600-italic.css";
+import "@fontsource/patrick-hand/400.css";
 import "katex/dist/katex.min.css";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";

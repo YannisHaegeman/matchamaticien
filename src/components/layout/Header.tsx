@@ -9,6 +9,7 @@ const navLinks = [
   { href: "/", label: "Accueil" },
   { href: "/carte-des-maths", label: "Carte des maths" },
   { href: "/flashcards", label: "Flash cards" },
+  { href: "/satisfaction", label: "Espace satisfaction" },
   { href: "/a-propos", label: "À propos" },
 ];
 
