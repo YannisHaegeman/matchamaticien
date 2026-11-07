@@ -1,5 +1,10 @@
 import { flashDecks, getDeckMeta } from "./decks";
 import { probabilitesCards } from "./data/probabilites";
+import { analyseCards } from "./data/analyse";
+import { outilsCards } from "./data/outils";
+import { integralesCards } from "./data/integrales";
+import { seriesCards } from "./data/series";
+import { tdIntegralesCards } from "./data/td-integrales";
 import type { Flashcard, FlashDeck, FlashDeckMeta } from "@/types/flashcards";
 
 /**
@@ -9,6 +14,11 @@ import type { Flashcard, FlashDeck, FlashDeckMeta } from "@/types/flashcards";
  */
 const deckCards: Record<string, Flashcard[]> = {
   probabilites: probabilitesCards,
+  analyse: analyseCards,
+  outils: outilsCards,
+  integrales: integralesCards,
+  series: seriesCards,
+  "td-integrales": tdIntegralesCards,
 };
 
 export function getAllDeckMetas(): FlashDeckMeta[] {

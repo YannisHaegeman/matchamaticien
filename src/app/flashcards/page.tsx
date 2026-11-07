@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import * as Icons from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, GraduationCap } from "lucide-react";
 import { getAllDecks } from "@/lib/flashcards";
 import { FLASHCARD_AMBIANCES } from "@/lib/flashcards/ambiances";
+import { redactionQcmQuestions } from "@/lib/qcm/data/redaction";
 
 export const metadata: Metadata = {
   title: "Flash cards",
@@ -28,6 +29,28 @@ export default function FlashcardsPage() {
         l&rsquo;indice si besoin, puis on retourne la carte. De quoi réviser
         par petites touches, sans relire tout un cours.
       </p>
+
+      <Link
+        href="/qcm-redaction"
+        className="card-relief group mt-8 flex items-center gap-5 overflow-hidden rounded-[1.75rem] border border-border bg-bg-card p-6 transition hover:-translate-y-1 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_12px_28px_-14px_rgba(26,19,68,0.3)]"
+      >
+        <span
+          className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full"
+          style={{ background: FLASHCARD_AMBIANCES.indigo.ground }}
+        >
+          <GraduationCap className="h-6 w-6" style={{ color: FLASHCARD_AMBIANCES.indigo.ink }} strokeWidth={2} />
+        </span>
+        <div className="flex-1">
+          <p className="font-serif text-[1.1rem] font-extrabold text-ink">
+            QCM : rédaction mathématique
+          </p>
+          <p className="mt-1 text-sm leading-relaxed text-muted">
+            {redactionQcmQuestions.length} questions à choix multiple(s) pour s&rsquo;entraîner à
+            repérer les bonnes et les mauvaises rédactions — vrai piège contre vrai piège.
+          </p>
+        </div>
+        <ArrowRight className="h-5 w-5 shrink-0 text-brand-strong transition group-hover:translate-x-0.5" />
+      </Link>
 
       <div className="mt-10 grid gap-5 sm:grid-cols-2">
         {decks.map((deck) => {

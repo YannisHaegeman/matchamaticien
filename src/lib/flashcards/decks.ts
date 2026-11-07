@@ -23,6 +23,46 @@ export const flashDecks: FlashDeckMeta[] = [
     ambiance: "prairie",
     icon: "Dice5",
   },
+  {
+    id: "analyse",
+    title: "Analyse",
+    description:
+      "Intégrale de Riemann : fonctions intégrables (bornées, continues, monotones), pièges classiques — sous forme de QCM.",
+    ambiance: "safran",
+    icon: "FunctionSquare",
+  },
+  {
+    id: "outils",
+    title: "Outils d'étude locale",
+    description:
+      "Bornes sup/inf, voisinages, suites (limites, valeurs d'adhérence, O/o/∼), Bolzano-Weierstrass, continuité, accroissements finis, Taylor-Lagrange.",
+    ambiance: "coquelicot",
+    icon: "Ruler",
+  },
+  {
+    id: "integrales",
+    title: "Intégrales généralisées",
+    description:
+      "Convergence sur un intervalle non borné ou ouvert, intégrabilité, comparaison, règle des équivalents, intégration par parties et changement de variable généralisés, règle d'Abel.",
+    ambiance: "indigo",
+    icon: "AreaChart",
+  },
+  {
+    id: "series",
+    title: "Séries numériques",
+    description:
+      "Convergence d'une série, critère de Cauchy, convergence absolue, séries géométriques et de Riemann, comparaison et règle des équivalents, comparaison séries-intégrales.",
+    ambiance: "prairie",
+    icon: "Sigma",
+  },
+  {
+    id: "td-integrales",
+    title: "TD : Intégrales généralisées",
+    description:
+      "Feuille d'exercices (TD2) sur les intégrales généralisées : calculs explicites, étude de nature, intégration par parties, changements de variable, formules de récurrence, semi-convergence — solutions complètes et détaillées.",
+    ambiance: "safran",
+    icon: "PencilRuler",
+  },
 ];
 
 export function getDeckMeta(id: string): FlashDeckMeta | undefined {

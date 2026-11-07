@@ -9,7 +9,9 @@ const navLinks = [
   { href: "/", label: "Accueil" },
   { href: "/carte-des-maths", label: "Carte des maths" },
   { href: "/flashcards", label: "Flash cards" },
+  { href: "/qcm-redaction", label: "QCM rédaction" },
   { href: "/satisfaction", label: "Espace satisfaction" },
+  { href: "/brouillon", label: "Cahier de brouillon" },
   { href: "/a-propos", label: "À propos" },
 ];
 
