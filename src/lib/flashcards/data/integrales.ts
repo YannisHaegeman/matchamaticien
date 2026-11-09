@@ -3,9 +3,16 @@ import type { Flashcard } from "@/types/flashcards";
 export const integralesCards: Flashcard[] = [
   {
     id: "continue-par-morceaux",
-    question: "Définir : une fonction $f : [a,b] \\to \\mathbb{R}$ est continue par morceaux.",
+    question:
+      "Définir : une fonction $f : I \\to \\mathbb{R}$, où $I$ est un intervalle **borné**, est continue par morceaux.",
     answer:
-      "$f$ est continue par morceaux s'il existe une subdivision finie $a_0 = a < a_1 < \\cdots < a_n = b$ telle que la restriction de $f$ à $]a_i, a_{i+1}[$ possède un prolongement continu sur $[a_i, a_{i+1}]$. Pour $f : I \\to \\mathbb{R}$, on dit que $f$ est continue par morceaux si elle l'est sur tout segment inclus dans $I$.",
+      "$f$ est continue par morceaux s'il existe une subdivision finie $x_0 < x_1 < \\cdots < x_n$ de $\\overline{I}$ (l'adhérence de $I$, un segment) telle que, pour tout $i \\in \\{1, \\dots, n\\}$, $f$ est continue sur $]x_{i-1}, x_i[\\, \\cap\\, I$ et s'y prolonge par continuité à $[x_{i-1}, x_i]$. Pour $f$ définie sur un intervalle $J$ quelconque (borné ou non), on dit que $f$ est continue par morceaux sur $J$ si elle l'est sur tout segment inclus dans $J$.",
+    remark:
+      "C'est l'usage français courant (prépa, licence) : une définition un peu plus restrictive que celle de Tao (*Analysis I*), qui autorise des morceaux réduits à un point et n'impose aucune limite finie aux bornes — voir « Explication ».",
+    explanationImages: [
+      "/flashcards/continuite-par-morceaux/explication-1.png",
+      "/flashcards/continuite-par-morceaux/explication-2.png",
+    ],
     source: "Déf 1.1",
   },
   {

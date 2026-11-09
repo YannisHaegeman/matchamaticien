@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { GraduationCap, Lightbulb, Pencil, RotateCcw } from "lucide-react";
+import { GraduationCap, Images, Lightbulb, Pencil, RotateCcw } from "lucide-react";
 import type { RenderedFlashcard, FlashcardAmbiance } from "@/types/flashcards";
 import { FLASHCARD_AMBIANCES } from "@/lib/flashcards/ambiances";
 import { MathAnswer } from "@/components/mathmap/MathAnswer";
 import { ExamPaperOverlay } from "@/components/flashcards/ExamPaperOverlay";
+import { ExplanationOverlay } from "@/components/flashcards/ExplanationOverlay";
 
 type AiState = "idle" | "loading" | "done" | "error";
 type Verdict = "correct" | "partiel" | "incorrect";
@@ -74,6 +75,7 @@ export function FlashCard({
   const [aiResult, setAiResult] = useState<{ verdict: Verdict; feedback: string } | null>(null);
   const [aiError, setAiError] = useState<string | null>(null);
   const [showExamPaper, setShowExamPaper] = useState(false);
+  const [showExplanation, setShowExplanation] = useState(false);
   const p = FLASHCARD_AMBIANCES[ambiance];
 
   const panelStyle = {
@@ -356,6 +358,22 @@ export function FlashCard({
                 <RotateCcw className="h-4 w-4" strokeWidth={2.2} />
                 Revoir la question
               </button>
+              {card.explanationImages && card.explanationImages.length > 0 ? (
+                <button
+                  type="button"
+                  onClick={() => setShowExplanation(true)}
+                  className="inline-flex min-h-11 items-center gap-1.5 rounded-full px-5 py-3 text-[15px] font-bold"
+                  style={{
+                    border: `1px solid ${p.line}`,
+                    background: p.panel,
+                    color: p.ink,
+                    boxShadow: "0 8px 16px -10px rgba(0,0,0,0.4)",
+                  }}
+                >
+                  <Images className="h-4 w-4" strokeWidth={2.2} />
+                  Explication
+                </button>
+              ) : null}
               {card.source ? (
                 <p
                   className="m-0 ml-auto text-right text-[11px] font-semibold leading-tight"
@@ -381,6 +399,12 @@ export function FlashCard({
         aiError={aiError}
         aiResult={aiResult}
         onSubmit={handleCheckAnswer}
+      />
+      <ExplanationOverlay
+        open={showExplanation}
+        onClose={() => setShowExplanation(false)}
+        images={card.explanationImages ?? []}
+        title={deckTitle}
       />
     </div>
   );

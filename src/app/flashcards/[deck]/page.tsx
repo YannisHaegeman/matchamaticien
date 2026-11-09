@@ -35,6 +35,7 @@ export default async function DeckPage(props: PageProps<"/flashcards/[deck]">) {
     hint: card.hint ? <MathContent source={card.hint} /> : undefined,
     answer: <MathContent source={card.answer} />,
     remark: card.remark ? <MathContent source={card.remark} /> : undefined,
+    explanationImages: card.explanationImages,
   }));
 
   return <DeckPlayer deck={deck} cards={cards} />;

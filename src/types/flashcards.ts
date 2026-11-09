@@ -30,6 +30,14 @@ export interface Flashcard {
   remark?: string;
   /** Référence affichée en coin de carte, ex. "TD 2 · Ex. 1.1". */
   source?: string;
+  /**
+   * Visuel(s) optionnel(s) (chemins sous /public) révélés par un
+   * bouton "Explication" au dos de la carte — pour un schéma ou une
+   * explication plus riche que ne le permet `remark`. Affichés tels
+   * quels (images statiques), sans passer par le pipeline Markdown/
+   * LaTeX.
+   */
+  explanationImages?: string[];
 }
 
 export interface FlashDeckMeta {
@@ -64,4 +72,5 @@ export interface RenderedFlashcard {
   answer: ReactNode;
   remark?: ReactNode;
   source?: string;
+  explanationImages?: string[];
 }
